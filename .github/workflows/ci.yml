@@ -1,0 +1,103 @@
+# Workflow name
+name: ci
+
+# Triggers the workflow on push or pull request events
+on: [push, pull_request]
+
+# Workflow jobs
+jobs:
+  # Build job
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+
+    # Runs the job on each OS
+    runs-on: ${{ matrix.os }}
+
+    # Job steps
+    steps:
+      # Checkout the repo with submodules
+      - uses: actions/checkout@v2
+        with:
+          submodules: "recursive"
+
+      # Cache files
+      - uses: actions/cache@v2
+        id: cache
+        with:
+          path: |
+            builddir/
+          key: ${{ runner.os }}-meson-${{ hashFiles('**/meson.build', '**/meson_options.txt') }}
+
+      # Setup python [Linux/macOS]
+      - name: Setup python [Linux/macOS]
+        if: ${{ runner.os == 'Linux' || runner.os == 'macOS' }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      # Setup meson and ninja [Linux/macOS]
+      - name: Setup meson and ninja [Linux/macOS]
+        if: ${{ runner.os == 'Linux' || runner.os == 'macOS' }}
+        run: |
+          pip install ninja meson
+
+      # Meson setup [Linux/macOS]
+      - name: Meson setup [Linux/macOS]
+        if: ${{ runner.os == 'Linux' || runner.os == 'macOS' }}
+        env:
+          CC: clang
+          CXX: clang++
+        run: |
+          meson setup builddir
+
+      # Meson compile [Linux/macOS]
+      - name: Meson compile [Linux/macOS]
+        if: ${{ runner.os == 'Linux' || runner.os == 'macOS' }}
+        run: |
+          ninja -C builddir
+
+      # Meson test [Linux/macOS]
+      - name: Run Tests [Linux/macOS]
+        if: ${{ runner.os == 'Linux' || runner.os == 'macOS' }}
+        run: |
+          ninja test -C builddir
+
+      # Setup MSYS2 [Windows]
+      - name: Setup MSYS2 [Windows]
+        uses: msys2/setup-msys2@v2
+        if: ${{ runner.os == 'Windows' }}
+        with:
+          msystem: CLANG64
+          update: true
+          install: >-
+            base-devel
+            mingw-w64-clang-x86_64-toolchain
+            mingw-w64-clang-x86_64-python
+            mingw-w64-clang-x86_64-meson
+
+      # Meson setup [Windows]
+      - name: Meson setup [Windows]
+        if: ${{ runner.os == 'Windows' }}
+        shell: msys2 {0}
+        env:
+          CC: clang
+          CXX: clang++
+        run: |
+          meson setup builddir
+
+      # Meson compile [Windows]
+      - name: Meson compile [Windows]
+        if: ${{ runner.os == 'Windows' }}
+        shell: msys2 {0}
+        run: |
+          ninja -C builddir
+
+      # Meson test [Windows]
+      - name: Run Tests [Windows]
+        if: ${{ runner.os == 'Windows' }}
+        shell: msys2 {0}
+        run: |
+          ninja test -C builddir
