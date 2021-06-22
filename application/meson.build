@@ -5,7 +5,8 @@ application_src = [
 application_inc = include_directories(['include'])
 
 application_deps = [
-    fmt_dep
+    fmt_dep,
+    spdlog_dep
 ]
 
 application = executable('application',

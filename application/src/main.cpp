@@ -11,10 +11,18 @@
 
 #include <iostream>
 
-#include <fmt/format.h>
+#include <spdlog/spdlog.h>
+#include <spdlog/sinks/stdout_color_sinks.h>
 
 int main(int argc, char **argv)
 {
-    std::cout << fmt::format("Hello, {}!\n", "Meson");
+    std::shared_ptr<spdlog::logger> logger = spdlog::stdout_color_mt("core");
+
+    spdlog::set_default_logger(logger);
+    spdlog::set_pattern("[%n] [%^%l%$] [thread %t] %v");
+    spdlog::set_level(spdlog::level::trace);
+
+    spdlog::trace("Horus Web Server {}", "v1.0.0");
+    spdlog::debug("This is a debug message");
     return 0;
 }
