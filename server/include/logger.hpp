@@ -1,5 +1,11 @@
 /**
- * @brief Server logger interface abstraction
+ * @file logger.hpp
+ * @author Thiago Rezende (horus.he4rt@gmail.com)
+ * @brief Logger interface abstraction
+ * @version 0.1
+ * @date 2021-06-22
+ *
+ * @copyright Copyright (c) 2021
  *
  */
 

@@ -1,11 +1,11 @@
 /**
  * @file main.cpp
- * @author Thiago Rezende (bitrateti@gmail.com)
- * @brief Application entry point
+ * @author Thiago Rezende (horus.he4rt@gmail.com)
+ * @brief Server entry point
  * @version 0.1
- * @date 2020-06-18
+ * @date 2021-06-22
  *
- * @copyright Copyright (c) 2020
+ * @copyright Copyright (c) 2021
  *
  */
 
