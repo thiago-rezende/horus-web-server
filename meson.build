@@ -1,8 +1,14 @@
 project('MesonStarterProject',
   ['cpp'],
-  version : '2.1.0',
+  version: '2.1.0',
   license: 'MIT',
-  default_options : ['cpp_std=c++17'])
+  default_options: [
+      'cpp_std=c++17',
+      'default_library=static'
+  ])
+
+fmt_proj = subproject('fmt')
+fmt_dep = dependency('fmt', required: true, fallback: ['fmt', 'fmt_dep'])
 
 subdir('application')
 

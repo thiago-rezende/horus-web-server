@@ -4,7 +4,12 @@ application_src = [
 
 application_inc = include_directories(['include'])
 
+application_deps = [
+    fmt_dep
+]
+
 application = executable('application',
     sources: application_src,
+    dependencies: application_deps,
     include_directories: application_inc,
     install: true)

@@ -97,6 +97,7 @@ builddir
 # subproject directories
 /subprojects/*
 !/subprojects/*.wrap
+!/subprojects/packagefiles
 
 ### Vim ###
 # Swap

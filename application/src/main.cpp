@@ -11,8 +11,10 @@
 
 #include <iostream>
 
+#include <fmt/format.h>
+
 int main(int argc, char **argv)
 {
-    std::cout << "Hello, Meson!" << std::endl;
+    std::cout << fmt::format("Hello, {}!\n", "Meson");
     return 0;
 }

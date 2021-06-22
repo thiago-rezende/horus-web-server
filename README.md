@@ -1,26 +1,28 @@
-<!-- C++ Starter Project Using Meson -->
+<!-- Horus Web Server -->
 
 <!-- Logo -->
 <img src=".github/logo.png" align="right" width="129"/>
 
 <!-- Title -->
-# C++ Starter Project Using Meson
+# Horus Web Server
 [![ci-badge]][ci-url] [![license-badge]][license-url] [![cpp-badge]][cpp-url] [![meson-badge]][meson-url]
 <!-- Short Description -->
-> A Simple C++ Starter Project Using [Meson][meson-url]
+> Simple and configurable web server written in [C++][cpp-url]
 
 <!-- Description -->
-This project was developed to be a simple and easy to use starter point for creating a [C++][cpp-url] project using the [Meson][meson-url] build system
+This project was developed as a practical application of the subject of computer networks from the information systems course.
 
+<!-- Disclaimer -->
+> :warning: **DO NOT USE IN PRODUCTION!**
 
 <!-- Links -->
-[ci-url]: https://github.com/thiago-rezende/meson-starter-project/actions
-[license-url]: https://opensource.org/licenses/MIT
+[ci-url]: https://github.com/thiago-rezende/horus-web-server/actions
+[license-url]: https://opensource.org/licenses/BSD-3-Clause
 [cpp-url]: https://en.cppreference.com/w/cpp
 [meson-url]: https://mesonbuild.com/
 
 <!-- Badges -->
-[license-badge]: https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square
+[license-badge]: https://img.shields.io/badge/license-BSD--3--Clause-informational?style=flat-square
 [meson-badge]: https://img.shields.io/badge/Meson-0.54.0-blueviolet.svg?style=flat-square
 [cpp-badge]: https://img.shields.io/badge/C++-17-orange.svg?style=flat-square
-[ci-badge]: https://img.shields.io/github/workflow/status/thiago-rezende/meson-starter-project/ci?label=CI&style=flat-square
+[ci-badge]: https://img.shields.io/github/workflow/status/thiago-rezende/horus-web-server/ci?label=CI&style=flat-square
