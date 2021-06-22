@@ -1,0 +1,9 @@
+[wrap-git]
+directory = asio
+url = https://github.com/chriskohlhoff/asio.git
+revision = head
+patch_directory = asio-patch
+
+[provide]
+asio = asio_dep
+

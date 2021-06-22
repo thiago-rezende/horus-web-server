@@ -11,10 +11,17 @@
 
 #include "logger.hpp"
 
+#include <asio/io_context.hpp>
+
 int main(int argc, char **argv)
 {
     horus::logger::init("server");
 
     horus::logger::info("Horus Web Server {}", "v1.0.0");
+
+    asio::io_context context;
+
+    context.run();
+
     return 0;
 }

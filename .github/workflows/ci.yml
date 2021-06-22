@@ -31,16 +31,14 @@ jobs:
             builddir/
           key: ${{ runner.os }}-meson-${{ hashFiles('**/meson.build', '**/meson_options.txt') }}
 
-      # Setup python [Linux/macOS]
-      - name: Setup python [Linux/macOS]
-        if: ${{ runner.os == 'Linux' || runner.os == 'macOS' }}
+      # Setup python
+      - name: Setup python
         uses: actions/setup-python@v2
         with:
           python-version: '3.x'
 
-      # Setup meson and ninja [Linux/macOS]
-      - name: Setup meson and ninja [Linux/macOS]
-        if: ${{ runner.os == 'Linux' || runner.os == 'macOS' }}
+      # Setup meson and ninja
+      - name: Setup meson and ninja
         run: |
           pip install ninja meson
 
@@ -53,51 +51,28 @@ jobs:
         run: |
           meson setup builddir
 
-      # Meson compile [Linux/macOS]
-      - name: Meson compile [Linux/macOS]
-        if: ${{ runner.os == 'Linux' || runner.os == 'macOS' }}
-        run: |
-          ninja -C builddir
-
-      # Meson test [Linux/macOS]
-      - name: Run Tests [Linux/macOS]
-        if: ${{ runner.os == 'Linux' || runner.os == 'macOS' }}
-        run: |
-          ninja test -C builddir
-
-      # Setup MSYS2 [Windows]
-      - name: Setup MSYS2 [Windows]
-        uses: msys2/setup-msys2@v2
+      # Setup Visual Studio shell [Windows]
+      - name: Setup Visual Studio shell [Windows]
         if: ${{ runner.os == 'Windows' }}
+        uses: egor-tensin/vs-shell@v2
         with:
-          msystem: CLANG64
-          update: true
-          install: >-
-            base-devel
-            mingw-w64-clang-x86_64-toolchain
-            mingw-w64-clang-x86_64-python
-            mingw-w64-clang-x86_64-meson
+          arch: x64
 
       # Meson setup [Windows]
       - name: Meson setup [Windows]
         if: ${{ runner.os == 'Windows' }}
-        shell: msys2 {0}
         env:
-          CC: clang
-          CXX: clang++
+          CC: clang-cl
+          CXX: clang-cl
         run: |
           meson setup builddir
 
-      # Meson compile [Windows]
-      - name: Meson compile [Windows]
-        if: ${{ runner.os == 'Windows' }}
-        shell: msys2 {0}
+      # Meson compile
+      - name: Meson compile
         run: |
           ninja -C builddir
 
-      # Meson test [Windows]
-      - name: Run Tests [Windows]
-        if: ${{ runner.os == 'Windows' }}
-        shell: msys2 {0}
+      # Meson test
+      - name: Run Tests
         run: |
           ninja test -C builddir

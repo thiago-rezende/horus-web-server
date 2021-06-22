@@ -6,7 +6,8 @@ server_inc = include_directories(['include'])
 
 server_deps = [
     fmt_dep,
-    spdlog_dep
+    spdlog_dep,
+    asio_dep
 ]
 
 server_exe = executable('server',
