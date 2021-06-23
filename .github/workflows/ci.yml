@@ -49,7 +49,7 @@ jobs:
           CC: clang
           CXX: clang++
         run: |
-          meson setup builddir
+          meson setup --buildtype=release builddir
 
       # Setup Visual Studio shell [Windows]
       - name: Setup Visual Studio shell [Windows]
@@ -65,7 +65,7 @@ jobs:
           CC: clang-cl
           CXX: clang-cl
         run: |
-          meson setup builddir
+          meson setup --buildtype=release builddir
 
       # Meson compile
       - name: Meson compile
