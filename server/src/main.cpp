@@ -10,8 +10,7 @@
  */
 
 #include "logger.hpp"
-
-#include <asio/io_context.hpp>
+#include "network.h"
 
 int main(int argc, char **argv)
 {
