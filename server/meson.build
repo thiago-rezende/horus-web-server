@@ -21,4 +21,6 @@ server_exe = executable('server',
     include_directories: server_inc,
     install: true)
 
+install_subdir('share/horus-www', install_dir : get_option('datadir'))
+
 subdir('tests')

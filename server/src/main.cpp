@@ -31,7 +31,7 @@ int main(int argc, char **argv)
 
         if (!document_root_exists)
         {
-            horus::logger::error("directory not found: \"{}\"", document_root.string());
+            horus::logger::error("document root not found: \"{}\"", document_root.string());
             return 1;
         }
 
