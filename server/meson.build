@@ -1,9 +1,10 @@
 server_src = [
     'src/main.cpp',
     'src/logger.cpp',
+    'src/server.cpp',
     'src/connection.cpp',
-    'src/connection_manager.cpp',
-    'src/server.cpp'
+    'src/utils/path.cpp',
+    'src/connection_manager.cpp'
 ]
 
 server_inc = include_directories(['include'])
@@ -19,3 +20,5 @@ server_exe = executable('server',
     dependencies: server_deps,
     include_directories: server_inc,
     install: true)
+
+subdir('tests')

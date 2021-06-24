@@ -9,6 +9,8 @@
  *
  */
 
+#include "utils/platform_detection.hpp"
+#include "utils/path.hpp"
 #include "network.hpp"
 #include "logger.hpp"
 #include "server.hpp"
@@ -22,6 +24,15 @@ int main(int argc, char **argv)
     try
     {
         asio::io_context context;
+
+        std::filesystem::path document_root = horus::utils::get_executable_dir().parent_path() / "share" / "horus-www";
+
+        bool document_root_exists = std::filesystem::exists(document_root);
+
+        if (!document_root_exists)
+            throw std::exception(fmt::format("directory not found: \"{}\"", document_root.string()).c_str());
+
+        horus::logger::info("[server] document root: {}", document_root.string());
 
         horus::server server(context, 8080);
         server.run();
