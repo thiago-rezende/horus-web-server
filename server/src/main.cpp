@@ -9,18 +9,27 @@
  *
  */
 
+#include "network.hpp"
 #include "logger.hpp"
-#include "network.h"
+#include "server.hpp"
 
 int main(int argc, char **argv)
 {
-    horus::logger::init("server");
+    horus::logger::init();
 
-    horus::logger::info("Horus Web Server {}", "v1.0.0");
+    horus::logger::info("Horus Web Server {}", "v0.1.0");
 
-    asio::io_context context;
+    try
+    {
+        asio::io_context context;
 
-    context.run();
+        horus::server server(context, 8080);
+        server.run();
+    }
+    catch (const std::exception &e)
+    {
+        horus::logger::error("[exception]: {}", e.what());
+    }
 
     return 0;
 }

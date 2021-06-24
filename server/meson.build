@@ -1,5 +1,9 @@
 server_src = [
-    'src/main.cpp'
+    'src/main.cpp',
+    'src/logger.cpp',
+    'src/connection.cpp',
+    'src/connection_manager.cpp',
+    'src/server.cpp'
 ]
 
 server_inc = include_directories(['include'])
