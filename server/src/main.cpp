@@ -30,7 +30,10 @@ int main(int argc, char **argv)
         bool document_root_exists = std::filesystem::exists(document_root);
 
         if (!document_root_exists)
-            throw std::exception(fmt::format("directory not found: \"{}\"", document_root.string()).c_str());
+        {
+            horus::logger::error("directory not found: \"{}\"", document_root.string());
+            return 1;
+        }
 
         horus::logger::info("[server] document root: {}", document_root.string());
 
