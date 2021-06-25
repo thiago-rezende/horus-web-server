@@ -15,11 +15,56 @@ This project was developed as a practical application of the subject of computer
 <!-- Disclaimer -->
 > :warning: **DO NOT USE IN PRODUCTION!**
 
+---
+
+<!-- Usage -->
+## Usage
+```sh
+  horus-web-server [OPTION...]
+
+      --port arg  port number
+      --doc arg   document root
+  -h, --help      print help
+```
+
+<!-- Requirements -->
+## Requirements
+ - [LLVM/clang][clang-url] or [MSVC/Visual Studio][visual-studio-url]
+ - [Python][python-url]
+ - [Meson Build System][meson-url]
+ - [Ninja Build][ninja-url]
+ - [Git][git-url]
+
+<!-- Build Instructions -->
+## Build Instructions
+> Clone the repo
+```sh
+git clone https://github.com/thiago-rezende/horus-web-server.git
+```
+> Configure builddir
+```sh
+cd horus-web-server
+meson --buildtype=release --prefix="$HOME/horus-ws" builddir
+```
+> Build
+```sh
+ninja -C builddir install
+```
+> Run
+```sh
+$HOME/horus-ws/bin/horus-web-server --help
+```
+
 <!-- Links -->
 [ci-url]: https://github.com/thiago-rezende/horus-web-server/actions
 [license-url]: https://opensource.org/licenses/BSD-3-Clause
 [cpp-url]: https://en.cppreference.com/w/cpp
 [meson-url]: https://mesonbuild.com/
+[ninja-url]: https://ninja-build.org/
+[clang-url]: https://clang.llvm.org/
+[visual-studio-url]: https://visualstudio.microsoft.com/
+[python-url]: https://www.python.org/
+[git-url]: https://git-scm.com/
 
 <!-- Badges -->
 [license-badge]: https://img.shields.io/badge/license-BSD--3--Clause-informational?style=flat-square
