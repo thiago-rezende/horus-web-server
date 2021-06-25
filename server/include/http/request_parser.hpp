@@ -11,6 +11,7 @@
 
 #pragma once
 
+#include <string>
 #include <vector>
 
 #include "http/common.hpp"
