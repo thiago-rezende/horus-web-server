@@ -12,6 +12,7 @@
 #pragma once
 
 #include <optional>
+#include <filesystem>
 
 #include "network.hpp"
 #include "connection_manager.hpp"
@@ -26,9 +27,10 @@ namespace horus
         asio::ip::tcp::acceptor acceptor_;
         connection_manager connection_manager_;
         asio::ip::tcp::socket socket_;
+        std::filesystem::path document_root_;
 
     public:
-        server(asio::io_context &context, uint16_t port);
+        server(asio::io_context &context, uint16_t port, std::filesystem::path document_root);
         ~server() = default;
 
         void run();

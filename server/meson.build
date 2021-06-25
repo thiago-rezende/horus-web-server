@@ -4,7 +4,8 @@ server_src = [
     'src/server.cpp',
     'src/connection.cpp',
     'src/utils/path.cpp',
-    'src/connection_manager.cpp'
+    'src/connection_manager.cpp',
+    'src/http/request_parser.cpp'
 ]
 
 server_inc = include_directories(['include'])

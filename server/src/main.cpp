@@ -37,7 +37,7 @@ int main(int argc, char **argv)
 
         horus::logger::info("[server] document root: {}", document_root.string());
 
-        horus::server server(context, 8080);
+        horus::server server(context, 8080, document_root);
         server.run();
     }
     catch (const std::exception &e)

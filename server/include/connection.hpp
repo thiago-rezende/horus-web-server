@@ -13,7 +13,11 @@
 
 #include <iostream>
 #include <array>
+
 #include "network.hpp"
+#include "http/request.hpp"
+#include "http/response.hpp"
+#include "http/request_parser.hpp"
 
 namespace horus
 {
@@ -25,6 +29,10 @@ namespace horus
         asio::ip::tcp::socket socket_;
         std::array<char, 8166> buffer_;
         connection_manager &connection_manager_;
+
+        http::request request_;
+        http::response response_;
+        http::request_parser request_parser_;
 
     public:
         connection(asio::ip::tcp::socket &&socket, connection_manager &manager);
