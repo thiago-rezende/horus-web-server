@@ -51,9 +51,9 @@ namespace horus
 
         namespace stock
         {
-            struct response_200 : response
+            struct response_ok : response
             {
-                response_200()
+                response_ok()
                 {
                     version = strings::version::HTTP_1_1;
                     status = static_cast<uint16_t>(status::code::ok);
@@ -89,9 +89,9 @@ namespace horus
                 }
             };
 
-            struct response_400 : response
+            struct response_bad_request : response
             {
-                response_400()
+                response_bad_request()
                 {
                     version = strings::version::HTTP_1_1;
                     status = static_cast<uint16_t>(status::code::bad_request);
@@ -127,9 +127,9 @@ namespace horus
                 }
             };
 
-            struct response_404 : response
+            struct response_not_found : response
             {
-                response_404()
+                response_not_found()
                 {
                     version = strings::version::HTTP_1_1;
                     status = static_cast<uint16_t>(status::code::not_found);
@@ -165,9 +165,9 @@ namespace horus
                 }
             };
 
-            struct response_501 : response
+            struct response_not_implemented : response
             {
-                response_501()
+                response_not_implemented()
                 {
                     version = strings::version::HTTP_1_1;
                     status = static_cast<uint16_t>(status::code::not_implemented);

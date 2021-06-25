@@ -4,10 +4,11 @@
 
 namespace horus
 {
-    connection::connection(asio::ip::tcp::socket &&socket, connection_manager &manager)
+    connection::connection(asio::ip::tcp::socket &&socket, connection_manager &manager, std::filesystem::path document_root)
         : socket_(std::move(socket)),
           connection_manager_(manager),
-          request_parser_()
+          request_parser_(),
+          request_handler_(document_root)
     {
     }
 
@@ -41,6 +42,11 @@ namespace horus
                 if (result == http::request_parser::result_type::ok)
                 {
                     horus::logger::info("[connection] <{}> [request]: {}", socket_.remote_endpoint().address().to_string(), request_.status_line());
+
+                    request_handler_.handle_request(request_, response_);
+
+                    horus::logger::info("[connection] <{}> [response]: {}", socket_.remote_endpoint().address().to_string(), response_.status_line());
+
                     do_write();
                 }
                 else if (result == http::request_parser::result_type::error)
@@ -64,14 +70,6 @@ namespace horus
 
     void connection::do_write()
     {
-        const char response[] =
-            "HTTP/1.1 200 OK\r\n"
-            "Host: 127.0.0.1:8080\r\n"
-            "Content-Type: text/html\r\n"
-            "Content-Size: 55\r\n"
-            "\r\n"
-            "<html><title>It Works!</title><h1>It Works!</h1></html>";
-
         auto handler = [this, self = shared_from_this()](asio::error_code ec, std::size_t)
         {
             if (!ec)
@@ -87,8 +85,6 @@ namespace horus
                 connection_manager_.stop(shared_from_this());
             }
         };
-
-        response_ = http::stock::response_200();
 
         std::string response_str = response_.to_string();
 

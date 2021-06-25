@@ -18,6 +18,7 @@
 #include "http/request.hpp"
 #include "http/response.hpp"
 #include "http/request_parser.hpp"
+#include "http/request_handler.hpp"
 
 namespace horus
 {
@@ -33,9 +34,10 @@ namespace horus
         http::request request_;
         http::response response_;
         http::request_parser request_parser_;
+        http::request_handler request_handler_;
 
     public:
-        connection(asio::ip::tcp::socket &&socket, connection_manager &manager);
+        connection(asio::ip::tcp::socket &&socket, connection_manager &manager, std::filesystem::path document_root);
         ~connection() = default;
 
         void start();
