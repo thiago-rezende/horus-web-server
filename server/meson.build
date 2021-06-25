@@ -14,10 +14,11 @@ server_inc = include_directories(['include'])
 server_deps = [
     fmt_dep,
     spdlog_dep,
-    asio_dep
+    asio_dep,
+    cxxopts_dep
 ]
 
-server_exe = executable('server',
+server_exe = executable('horus-web-server',
     sources: server_src,
     dependencies: server_deps,
     include_directories: server_inc,

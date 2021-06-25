@@ -16,6 +16,9 @@ spdlog_dep = dependency('spdlog', required: true, fallback: ['spdlog', 'spdlog_d
 asio_proj = subproject('asio')
 asio_dep = dependency('asio', required: true, fallback: ['asio', 'asio_dep'])
 
+cxxopts_proj = subproject('cxxopts')
+cxxopts_dep = dependency('cxxopts', required: true, fallback: ['cxxopts', 'cxxopts_dep'])
+
 subdir('server')
 
 summary({'bindir': get_option('bindir'),
