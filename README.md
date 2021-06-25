@@ -7,7 +7,7 @@
 # Horus Web Server
 [![ci-badge]][ci-url] [![license-badge]][license-url] [![cpp-badge]][cpp-url] [![meson-badge]][meson-url]
 <!-- Short Description -->
-> Simple and configurable web server written in [C++][cpp-url]
+> Simple and (not yet) configurable web server written in [C++][cpp-url]
 
 <!-- Description -->
 This project was developed as a practical application of the subject of computer networks from the information systems course.

@@ -43,6 +43,11 @@ namespace horus
 
                 return req_str.str();
             }
+
+            std::string status_line()
+            {
+                return method + " " + target + " " + version;
+            }
         };
 
     } // namespace http

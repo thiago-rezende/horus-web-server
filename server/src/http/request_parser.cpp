@@ -124,6 +124,7 @@ namespace horus
             case state::http_version_major:
                 if (input == '.')
                 {
+                    req.version += input;
                     state_ = state::http_version_minor_start;
                     return result_type::indeterminate;
                 }

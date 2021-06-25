@@ -43,6 +43,25 @@ namespace horus
 
         } // namespace strings
 
+        namespace status
+        {
+            enum class code
+            {
+                ok = 200,
+                bad_request = 400,
+                not_found = 404,
+                not_implemented = 501
+            };
+
+            namespace reason
+            {
+                constexpr std::string_view ok = "OK";
+                constexpr std::string_view bad_request = "Bad Request";
+                constexpr std::string_view not_found = "Not Found";
+                constexpr std::string_view not_implemented = "Not Implemented";
+            } // namespace reason
+        }     // namespace status
+
     } // namespace http
 
 } // namespace horus

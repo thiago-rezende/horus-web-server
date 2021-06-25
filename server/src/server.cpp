@@ -37,7 +37,7 @@ namespace horus
             if (!acceptor_.is_open())
                 return;
 
-            horus::logger::info("[connection] <{}> accepted", socket_.remote_endpoint().address().to_string());
+            // horus::logger::info("[connection] <{}> accepted", socket_.remote_endpoint().address().to_string());
 
             connection_manager_.start(std::make_shared<connection>(std::move(socket_), connection_manager_));
 
